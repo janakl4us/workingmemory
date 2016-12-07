@@ -1,1 +1,18 @@
-# workingmemory
+## Complex span tasks #
+***
+Here we provide three different complex span tasks which allow the user to measure verbal working memory capacity in English-, Dutch- and German-speaking participants. The three different tasks are:
+- reading span task: judging the semantic correctness of a sentence and remembering a word
+- mixed span task: judging the semantic correctness of a sentence and remembering a digit
+- operation span task: judging the correctness of an equation and remembering a digit
+
+The tasks can be used both in a controlled lab environment as well as a web-based test. They were programmed using [jsPsych](http://www.jspsych.org/) (de Leeuw, 2016) and should run in any up-to-date browser. 
+
+We also provide protocols for the lab versions, as well as R analysis scripts for all the tasks. 
+
+### Support/contribute/cite #
+***
+For general questions on the task, we refer to the manuscript. For data storage instructions, please refer to the [jsPsych documentation on the issue](http://docs.jspsych.org/features/data/). If you have any further questions or would like to contribute a translation, please contact Jana Klaus at j.klaus@donders.ru.nl. 
+
+If you use this library in academic work, please cite our manuscript: 
+
+Klaus, J., & Schriefers, H. (2016). *Measuring working memory capacity: A reading span task for laboratory and web-based use.* Unpublished manuscript submitted for publication.

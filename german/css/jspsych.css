@@ -1,0 +1,140 @@
+/*
+ * CSS for jsPsych experiments.
+ *
+ * This stylesheet provides minimal styling to make jsPsych
+ * experiments look polished without any additional styles.
+ */
+
+ /* Container holding jsPsych content */
+
+ .jspsych-display-element {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   width: 100%;
+   overflow-y: hidden;
+ }
+
+ .jspsych-top {
+   align-items: flex-start;
+ }
+
+ .jspsych-middle {
+   align-items: center;
+ }
+
+ .jspsych-content {
+   width: 75%;
+   text-align:left;
+   margin: auto;
+   padding-bottom: 10%;
+ }
+
+ .jspsych-content-wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex: 1 1 auto;
+   width: 100%;
+ }
+
+/* fonts and type */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+
+.jspsych-display-element {
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-size: 24px;
+  line-height: 1.6em;
+}
+
+/* Form elements like input fields and buttons */
+
+input[type="text"] {
+  font-family: 'Open Sans', 'Arial', sans-sefif;
+  font-size: 14px;
+}
+
+/* borrowing Bootstrap style for btn elements, but combining styles a bit */
+.jspsych-btn {
+  display: block;
+  padding: 10px;
+  margin: auto;
+  font-size: 26px;
+  font-weight: 400;
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  cursor: pointer;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 3px solid #487a6c;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.jspsych-btn:hover {
+  background-color: #487a6c;
+  border-color: #487a6c;
+}
+
+.jspsych-btn-yes {
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  color: #ffffff;
+  font-size: 20px;
+  background: #487a6c;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  cursor: default;
+  width: 75px;
+  height: 75px;
+  text-align: left;
+}
+
+.jspsych-btn-no {
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  color: #ffffff;
+  font-size: 20px;
+  background: #487a6c;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  cursor: default;
+  width: 75px;
+  height: 75px;
+  text-align: right;
+}
+
+.divider{
+    width:100px;
+    height:auto;
+    display:inline-block;
+}
+
+/*PLUGIN: jspsych-single-stim */
+
+#jspsych-single-stim-stimulus {
+      bottom: 0;
+      height: 20%;
+      left: 0;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 90%;
+      text-align: center;
+      font-size: 26px;}
+
+
+/* Control appearance of jsPsych.data.displayData() */
+#jspsych-data-display {
+  text-align: left;
+}

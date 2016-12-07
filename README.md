@@ -12,4 +12,4 @@ For general questions on the task, we refer to the [manuscript](https://osf.io/n
 
 If you use this library in academic work, please cite our manuscript: 
 
-Klaus, J., & Schriefers, H. (2016). *Measuring working memory capacity: A reading span task for laboratory and web-based use.* Unpublished manuscript submitted for publication.
+Klaus, J., & Schriefers, H. (2016). *Measuring working memory capacity: A reading span task for laboratory and web-based use.* Unpublished manuscript submitted for publication. https://osf.io/nj48x

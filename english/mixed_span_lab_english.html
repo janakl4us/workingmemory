@@ -1,0 +1,1562 @@
+<html>
+<head>
+    <title>Memory test</title>
+    <script src="jquery.min.js"></script>
+    <script src="jspsych.js"></script>
+    <script src="plugins/jspsych-text.js"></script>
+    <script src="plugins/jspsych-single-stim.js"></script>
+    <script src="plugins/jspsych-instructions.js"></script>
+    <link href="css/jspsych.css" rel="stylesheet" type="text/css">
+    <link href="css/rst.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+</head>
+<script>
+//instructions
+var instructions_block = {
+  type: 'instructions',
+  pages: ['<p><strong>Welcome to the experiment!</strong></p>' +
+  '<p>The following task consists of two parts. First, you will see sentences on the screen, which you are supposed ' +
+  'to read out loud. These sentences can make sense (e.g. <i>More and more women want to have a career.</i>) or not ' +
+  '(e.g. <i>I stopped by the gas station to refuel on apple juice.</i>). Your first task is to judge the content of each ' +
+  'sentence. You will do this by pressing a key to indicate whether it makes sense or not (&larr; = yes, &rarr; = no). ' +
+  'After this decision you will see a letter on the screen, which you are also supposed to read out loud. Your second ' +
+  'task is to memorise this letter in order to recall it later on.</p>' +
+  '<p>After two to six sentences (which you are supposed to judge) and letters (which you are supposed to memorise), ' +
+  'you will see three question marks (<i>???</i>). Whenever this happens, please overtly recall all letters you still ' +
+  'remember since the last <i>???</i>. Often it&#039;s easier to recall them in the order in which they were presented, but ' +
+  'this isn&#039;t really necessary. If you only remember a couple, but not all letters, it&#039;s okay to only name the ones that ' +
+  'you do remember. After you named all these letters, you can start the next round by pressing ENTER.</p>' +
+  '<p>The experimenter will write down your answers. Should you still have questions, please ask them now. Otherwise we can ' +
+  'begin. Please press ENTER to start.</p>'],
+  key_forward: 13,
+};
+
+//first practice block
+var practice_block11 = {
+  type: "single-stim",
+  stimulus: ['<p>Even as a little boy, John was fascinated by stars and planets.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'practice', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var practice_block12 = {
+  type: "single-stim",
+  stimulus: ['<p>P</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'}, data: {phase: 'mem_pra'},
+  is_html: true,
+};
+
+var practice_block13 = {
+  type: "single-stim",
+  stimulus: ['<p>The mayor asked the residents to stay calm and wait.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'practice', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var practice_block14 = {
+  type: "single-stim",
+  stimulus: ['<p>N</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'}, data: {phase: 'mem_pra'},
+  is_html: true,
+};
+
+var practice_block15 = {
+  type: "single-stim",
+  stimulus: ['<p>Ever since I was askew, I wanted to have a big brother.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'practice', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var practice_block16 = {
+  type: "single-stim",
+  stimulus: ['<p>Q</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'}, data: {phase: 'mem_pra'},
+  is_html: true,
+};
+
+//second practice block
+var practice_block21 = {
+  type: "single-stim",
+  stimulus: ['<p>If everything goes according to plan, I will be done with my work by next week.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'practice', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var practice_block22 = {
+  type: "single-stim",
+  stimulus: ['<p>H</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'}, data: {phase: 'mem_pra'},
+  is_html: true,
+};
+
+var practice_block23 = {
+  type: "single-stim",
+  stimulus: ['<p>Although Susan hated doing housework, she wrinkled doing the dishes.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'practice', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var practice_block24 = {
+  type: "single-stim",
+  stimulus: ['<p>R</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'}, data: {phase: 'mem_pra'},
+  is_html: true,
+};
+
+var practice_block25 = {
+  type: "single-stim",
+  stimulus: ['<p>Because I got up so late yesterday, I had trouble falling asleep at night.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'practice', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var practice_block26 = {
+  type: "single-stim",
+  stimulus: ['<p>V</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'}, data: {phase: 'mem_pra'},
+  is_html: true,
+};
+
+//practice phase ends here
+
+//block 1
+var exp_block11 = {
+  type: "single-stim",
+  stimulus: ['<p>Alex had to wait six weeks before he could pick up his new passport.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block12 = {
+  type: "single-stim",
+  stimulus: ['<p>F</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block13 = {
+  type: "single-stim",
+  stimulus: ['<p>Eric had to cancel the date because he had gotten funny.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block14 = {
+  type: "single-stim",
+  stimulus: ['<p>K</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block15 = {
+  type: "single-stim",
+  stimulus: ['<p>I have to paint my entire apartment before I can move out.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block16 = {
+  type: "single-stim",
+  stimulus: ['<p>Q</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 2
+var exp_block21 = {
+  type: "single-stim",
+  stimulus: ['<p>It is getting increasingly light for older people to work with computers.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block22 = {
+  type: "single-stim",
+  stimulus: ['<p>R</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block23 = {
+  type: "single-stim",
+  stimulus: ['<p>We should always be aware of how dry off we actually are.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block24 = {
+  type: "single-stim",
+  stimulus: ['<p>L</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block25 = {
+  type: "single-stim",
+  stimulus: ['<p>Lisa was looking forward to the weekend because then she could finally shine.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block26 = {
+  type: "single-stim",
+  stimulus: ['<p>X</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block27 = {
+  type: "single-stim",
+  stimulus: ['<p>Because they settled the issue out of court, a plate could be averted.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block28 = {
+  type: "single-stim",
+  stimulus: ['<p>H</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block29 = {
+  type: "single-stim",
+  stimulus: ['<p>Julia&#039;s father promised she could have dessert if she finished her radiator.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block210 = {
+  type: "single-stim",
+  stimulus: ['<p>V</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 3
+var exp_block31 = {
+  type: "single-stim",
+  stimulus: ['<p>Although Anne had turned up the heating, she was still freezing.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block32 = {
+  type: "single-stim",
+  stimulus: ['<p>K</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block33 = {
+  type: "single-stim",
+  stimulus: ['<p>During the weekend Eve liked to go out hearing with friends.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block34 = {
+  type: "single-stim",
+  stimulus: ['<p>B</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block35 = {
+  type: "single-stim",
+  stimulus: ['<p>Although the police had received many clues, they could not find the burglar.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block36 = {
+  type: "single-stim",
+  stimulus: ['<p>S</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 4
+var exp_block41 = {
+  type: "single-stim",
+  stimulus: ['<p>Steve was disappointed that his favourite player was leaving the club.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block42 = {
+  type: "single-stim",
+  stimulus: ['<p>Q</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block43 = {
+  type: "single-stim",
+  stimulus: ['<p>Hank went to the market every week to buy fresh curtains.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block44 = {
+  type: "single-stim",
+  stimulus: ['<p>R</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block45 = {
+  type: "single-stim",
+  stimulus: ['<p>Whenever my throat hurts I drink hot milk with honey.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block46 = {
+  type: "single-stim",
+  stimulus: ['<p>G</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block47 = {
+  type: "single-stim",
+  stimulus: ['<p>Every Christmas Sharon sends greeting cards to her friends.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block48 = {
+  type: "single-stim",
+  stimulus: ['<p>K</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block49 = {
+  type: "single-stim",
+  stimulus: ['<p>When Sarah comes home in the evening, the first thing she does is cook dinner.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block410 = {
+  type: "single-stim",
+  stimulus: ['<p>X</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block411 = {
+  type: "single-stim",
+  stimulus: ['<p>The day was so gray and drizzly, that it was hard for me to wake up.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block412 = {
+  type: "single-stim",
+  stimulus: ['<p>Z</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 5
+var exp_block51 = {
+  type: "single-stim",
+  stimulus: ['<p>Ina liked to go the theatre, but her boyfriend always found it awfully boring.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block52 = {
+  type: "single-stim",
+  stimulus: ['<p>Z</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block53 = {
+  type: "single-stim",
+  stimulus: ['<p>Iris loved going to the theatre, but her boyfriend always got bored when he accompanied her.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block54 = {
+  type: "single-stim",
+  stimulus: ['<p>M</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 6
+var exp_block61 = {
+  type: "single-stim",
+  stimulus: ['<p>Mark hoped that the weather during the cruise would be striped.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  data: {phase: 'exp', response: '39'},
+  is_html: true,
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block62 = {
+  type: "single-stim",
+  stimulus: ['<p>K</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block63 = {
+  type: "single-stim",
+  stimulus: ['<p>Although the movie was very scary I just couldn&#039;t look away.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block64 = {
+  type: "single-stim",
+  stimulus: ['<p>M</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block65 = {
+  type: "single-stim",
+  stimulus: ['<p>Because Jenny had received a raise, she took her boyfriend out for summer.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block66 = {
+  type: "single-stim",
+  stimulus: ['<p>V</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block67 = {
+  type: "single-stim",
+  stimulus: ['<p>Erica liked going to the zoo to observe the exotic fish.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block68 = {
+  type: "single-stim",
+  stimulus: ['<p>H</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block69 = {
+  type: "single-stim",
+  stimulus: ['<p>Sean planned to work especially hard during the next semester.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block610 = {
+  type: "single-stim",
+  stimulus: ['<p>J</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 7
+var exp_block71 = {
+  type: "single-stim",
+  stimulus: ['<p>After long ironing, Ralph finally decided to end the relationship.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block72 = {
+  type: "single-stim",
+  stimulus: ['<p>Z</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block73 = {
+  type: "single-stim",
+  stimulus: ['<p>In a few years I would like to glue the winter months in the warm South.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block74 = {
+  type: "single-stim",
+  stimulus: ['<p>K</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block75 = {
+  type: "single-stim",
+  stimulus: ['<p>When walking long distances, it is very important to wear the right roofs.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block76 = {
+  type: "single-stim",
+  stimulus: ['<p>B</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block77 = {
+  type: "single-stim",
+  stimulus: ['<p>I should have known that there would be pickpockets in this busy crowd.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block78 = {
+  type: "single-stim",
+  stimulus: ['<p>L</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 8
+var exp_block81 = {
+  type: "single-stim",
+  stimulus: ['<p>Civilians and politicians were shocked about the unscrupulousness of the perpetrators.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block82 = {
+  type: "single-stim",
+  stimulus: ['<p>J</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block83 = {
+  type: "single-stim",
+  stimulus: ['<p>Whenever he has the time, Rick visits his grandmother in the nursing home.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block84 = {
+  type: "single-stim",
+  stimulus: ['<p>B</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block85 = {
+  type: "single-stim",
+  stimulus: ['<p>The seagulls were flying around the beach, waiting to be knit.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block86 = {
+  type: "single-stim",
+  stimulus: ['<p>Z</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block87 = {
+  type: "single-stim",
+  stimulus: ['<p>When dressing up, Lena always made sure her shoes matched the rest of her outfit.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block88 = {
+  type: "single-stim",
+  stimulus: ['<p>K</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block89 = {
+  type: "single-stim",
+  stimulus: ['<p>All Paul needed to relax was a good book and a cup of paper.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block810 = {
+  type: "single-stim",
+  stimulus: ['<p>H</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block811 = {
+  type: "single-stim",
+  stimulus: ['<p>It was extremely difficult to find an affordable apartment in the city centre.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block812 = {
+  type: "single-stim",
+  stimulus: ['<p>X</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 9
+var exp_block91 = {
+  type: "single-stim",
+  stimulus: ['<p>The sea was very stormy during the ferry ride so many passengers got sick.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block92 = {
+  type: "single-stim",
+  stimulus: ['<p>G</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block93 = {
+  type: "single-stim",
+  stimulus: ['<p>Tina was looking forward to the challenge of her new job.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block94 = {
+  type: "single-stim",
+  stimulus: ['<p>R</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 10
+var exp_block101 = {
+  type: "single-stim",
+  stimulus: ['<p>The monument that was eaten yesterday is in memory of the victims of war.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block102 = {
+  type: "single-stim",
+  stimulus: ['<p>T</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block103 = {
+  type: "single-stim",
+  stimulus: ['<p>Clara had already expected the plate to arrive late.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block104 = {
+  type: "single-stim",
+  stimulus: ['<p>K</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block105 = {
+  type: "single-stim",
+  stimulus: ['<p>At school I was mostly interested in history and refrigerators.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block106 = {
+  type: "single-stim",
+  stimulus: ['<p>S</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block107 = {
+  type: "single-stim",
+  stimulus: ['<p>I would have never expected my boyfriend to propose to me.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block108 = {
+  type: "single-stim",
+  stimulus: ['<p>Q</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 11
+var exp_block111 = {
+  type: "single-stim",
+  stimulus: ['<p>Supposedly healthy foods often contain hidden sugars and tables.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block112 = {
+  type: "single-stim",
+  stimulus: ['<p>Z</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block113 = {
+  type: "single-stim",
+  stimulus: ['<p>There were many pencils because nobody had expected the icy roads this morning.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block114 = {
+  type: "single-stim",
+  stimulus: ['<p>N</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block115 = {
+  type: "single-stim",
+  stimulus: ['<p>Tom liked to take the bus to work so he had a chance to chew the newspaper.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block116 = {
+  type: "single-stim",
+  stimulus: ['<p>K</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 12
+var exp_block121 = {
+  type: "single-stim",
+  stimulus: ['<p>During holiday season they liked to decorate their house festively and thirstily.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block122 = {
+  type: "single-stim",
+  stimulus: ['<p>B</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block123 = {
+  type: "single-stim",
+  stimulus: ['<p>Richard wanted to have a cat but his window did not allow it.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block124 = {
+  type: "single-stim",
+  stimulus: ['<p>M</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block125 = {
+  type: "single-stim",
+  stimulus: ['<p>Every year many skiers are injured because they don&#039;t stay on the designated pots.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block126 = {
+  type: "single-stim",
+  stimulus: ['<p>Q</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block127 = {
+  type: "single-stim",
+  stimulus: ['<p>Because I hadn&#039;t drilled laundry for a while, I was out of clean socks.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block128 = {
+  type: "single-stim",
+  stimulus: ['<p>X</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block129 = {
+  type: "single-stim",
+  stimulus: ['<p>If you look closely you can see the first paws of spring.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block1210 = {
+  type: "single-stim",
+  stimulus: ['<p>J</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 13
+var exp_block131 = {
+  type: "single-stim",
+  stimulus: ['<p>We should seriously start to think about how to stop climate change.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block132 = {
+  type: "single-stim",
+  stimulus: ['<p>F</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block133 = {
+  type: "single-stim",
+  stimulus: ['<p>I am saving money so that I can buy a new laptop soon.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block134 = {
+  type: "single-stim",
+  stimulus: ['<p>P</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 14
+var exp_block141 = {
+  type: "single-stim",
+  stimulus: ['<p>Whenever I go on vacation, my neighbour usually waters my plants.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block142 = {
+  type: "single-stim",
+  stimulus: ['<p>H</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block143 = {
+  type: "single-stim",
+  stimulus: ['<p>Because Anna was not paying attention, she spilt coffee all over her keyboard.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block144 = {
+  type: "single-stim",
+  stimulus: ['<p>G</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block145 = {
+  type: "single-stim",
+  stimulus: ['<p>I could not understand why some people supported the banning of fireworks.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block146 = {
+  type: "single-stim",
+  stimulus: ['<p>Q</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block147 = {
+  type: "single-stim",
+  stimulus: ['<p>Much to his surprise, Jack found a rare collectible at the flea market.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block148 = {
+  type: "single-stim",
+  stimulus: ['<p>L</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block149 = {
+  type: "single-stim",
+  stimulus: ['<p>For now no one knows who is responsible for the fires these last weeks.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block1410 = {
+  type: "single-stim",
+  stimulus: ['<p>R</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block1411 = {
+  type: "single-stim",
+  stimulus: ['<p>I was proud that I was able to repair my bike on my own.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block1412 = {
+  type: "single-stim",
+  stimulus: ['<p>J</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 15
+var exp_block151 = {
+  type: "single-stim",
+  stimulus: ['<p>More people should support a good cause by participating in volunteer work.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block152 = {
+  type: "single-stim",
+  stimulus: ['<p>G</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block153 = {
+  type: "single-stim",
+  stimulus: ['<p>The museum was closed down last week because it had not attracted enough eggs.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block154 = {
+  type: "single-stim",
+  stimulus: ['<p>N</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block155 = {
+  type: "single-stim",
+  stimulus: ['<p>Peter could not finish his homework on time because he always got mixed.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block156 = {
+  type: "single-stim",
+  stimulus: ['<p>K</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block157 = {
+  type: "single-stim",
+  stimulus: ['<p>I prefer to go on hikes during spring because it is not so furry then.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>yes</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>no</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block158 = {
+  type: "single-stim",
+  stimulus: ['<p>Z</p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//experimental phase ends here
+
+//recall block (???)
+var recall_block = {
+  type: "single-stim",
+  stimulus: ['<p style="font-weight:bold;font-size:50px;color:#487a6c;">???</p>' +
+             '<p style="padding:0">Continue with ENTER</p>'],
+  choices: [13],
+  is_html: true
+};
+
+//timeline structure
+var timeline = [];
+timeline.push(instructions_block);
+timeline.push(practice_block11);
+timeline.push(practice_block12);
+timeline.push(practice_block13);
+timeline.push(practice_block14);
+timeline.push(practice_block15);
+timeline.push(practice_block16);
+timeline.push(recall_block);
+timeline.push(practice_block21);
+timeline.push(practice_block22);
+timeline.push(practice_block23);
+timeline.push(practice_block24);
+timeline.push(practice_block25);
+timeline.push(practice_block26);
+timeline.push(recall_block);
+timeline.push(exp_block11);
+timeline.push(exp_block12);
+timeline.push(exp_block13);
+timeline.push(exp_block14);
+timeline.push(exp_block15);
+timeline.push(exp_block16);
+timeline.push(recall_block);
+timeline.push(exp_block21);
+timeline.push(exp_block22);
+timeline.push(exp_block23);
+timeline.push(exp_block24);
+timeline.push(exp_block25);
+timeline.push(exp_block26);
+timeline.push(exp_block27);
+timeline.push(exp_block28);
+timeline.push(exp_block29);
+timeline.push(exp_block210);
+timeline.push(recall_block);
+timeline.push(exp_block31);
+timeline.push(exp_block32);
+timeline.push(exp_block33);
+timeline.push(exp_block34);
+timeline.push(exp_block35);
+timeline.push(exp_block36);
+timeline.push(recall_block);
+timeline.push(exp_block41);
+timeline.push(exp_block42);
+timeline.push(exp_block43);
+timeline.push(exp_block44);
+timeline.push(exp_block45);
+timeline.push(exp_block46);
+timeline.push(exp_block47);
+timeline.push(exp_block48);
+timeline.push(exp_block49);
+timeline.push(exp_block410);
+timeline.push(exp_block411);
+timeline.push(exp_block412);
+timeline.push(recall_block);
+timeline.push(exp_block51);
+timeline.push(exp_block52);
+timeline.push(exp_block53);
+timeline.push(exp_block54);
+timeline.push(recall_block);
+timeline.push(exp_block61);
+timeline.push(exp_block62);
+timeline.push(exp_block63);
+timeline.push(exp_block64);
+timeline.push(exp_block65);
+timeline.push(exp_block66);
+timeline.push(exp_block67);
+timeline.push(exp_block68);
+timeline.push(exp_block69);
+timeline.push(exp_block610);
+timeline.push(recall_block);
+timeline.push(exp_block71);
+timeline.push(exp_block72);
+timeline.push(exp_block73);
+timeline.push(exp_block74);
+timeline.push(exp_block75);
+timeline.push(exp_block76);
+timeline.push(exp_block77);
+timeline.push(exp_block78);
+timeline.push(recall_block);
+timeline.push(exp_block81);
+timeline.push(exp_block82);
+timeline.push(exp_block83);
+timeline.push(exp_block84);
+timeline.push(exp_block85);
+timeline.push(exp_block86);
+timeline.push(exp_block87);
+timeline.push(exp_block88);
+timeline.push(exp_block89);
+timeline.push(exp_block810);
+timeline.push(exp_block811);
+timeline.push(exp_block812);
+timeline.push(recall_block);
+timeline.push(exp_block91);
+timeline.push(exp_block92);
+timeline.push(exp_block93);
+timeline.push(exp_block94);
+timeline.push(recall_block);
+timeline.push(exp_block101);
+timeline.push(exp_block102);
+timeline.push(exp_block103);
+timeline.push(exp_block104);
+timeline.push(exp_block105);
+timeline.push(exp_block106);
+timeline.push(exp_block107);
+timeline.push(exp_block108);
+timeline.push(recall_block);
+timeline.push(exp_block111);
+timeline.push(exp_block112);
+timeline.push(exp_block113);
+timeline.push(exp_block114);
+timeline.push(exp_block115);
+timeline.push(exp_block116);
+timeline.push(recall_block);
+timeline.push(exp_block121);
+timeline.push(exp_block122);
+timeline.push(exp_block123);
+timeline.push(exp_block124);
+timeline.push(exp_block125);
+timeline.push(exp_block126);
+timeline.push(exp_block127);
+timeline.push(exp_block128);
+timeline.push(exp_block129);
+timeline.push(exp_block1210);
+timeline.push(recall_block);
+timeline.push(exp_block131);
+timeline.push(exp_block132);
+timeline.push(exp_block133);
+timeline.push(exp_block134);
+timeline.push(recall_block);
+timeline.push(exp_block141);
+timeline.push(exp_block142);
+timeline.push(exp_block143);
+timeline.push(exp_block144);
+timeline.push(exp_block145);
+timeline.push(exp_block146);
+timeline.push(exp_block147);
+timeline.push(exp_block148);
+timeline.push(exp_block149);
+timeline.push(exp_block1410);
+timeline.push(exp_block1411);
+timeline.push(exp_block1412);
+timeline.push(recall_block);
+timeline.push(exp_block151);
+timeline.push(exp_block152);
+timeline.push(exp_block153);
+timeline.push(exp_block154);
+timeline.push(exp_block155);
+timeline.push(exp_block156);
+timeline.push(exp_block157);
+timeline.push(exp_block158);
+timeline.push(recall_block);
+
+//function to save the data
+function saveData(filename, filedata){
+   $.ajax({
+      type:'post',
+      cache: false,
+      url: 'save_data.php',
+      data: {filename: filename, filedata: filedata}
+   });
+}
+
+//create random participant number
+var subject_ID = Math.floor(Math.random()*10000);
+
+//initialise experiment
+jsPsych.init({
+   timeline: timeline,
+   fullscreen: true,
+   on_finish: function(data){
+        saveData("mixed_span_lab_english_" + subject_ID + ".csv", jsPsych.data.getDataAsCSV());
+   }
+});
+
+</script>
+</html>

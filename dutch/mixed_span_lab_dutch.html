@@ -1,0 +1,1561 @@
+<html>
+<head>
+    <title>Geheugentest</title>
+    <script src="jquery.min.js"></script>
+    <script src="jspsych.js"></script>
+    <script src="plugins/jspsych-text.js"></script>
+    <script src="plugins/jspsych-single-stim.js"></script>
+    <script src="plugins/jspsych-instructions.js"></script>
+    <link href="css/jspsych.css" rel="stylesheet" type="text/css">
+    <link href="css/rst.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+</head>
+<script>
+//instructions
+var instructions_block = {
+  type: 'instructions',
+  pages: ['<p><strong>Welkom bij het experiment!</strong></p>' +
+  '<p>De volgende test bestaat uit twee delen. In het eerste deel verschijnen zinnen op het scherm, die je hardop moet lezen. ' +
+  'Deze zinnen kunnen zinvol zijn (bijv. "Steeds meer vrouwen willen carrière maken") of niet (bijv. "Ik stopte bij ' +
+  'het tankstation om appelsap te tanken"). Jouw eerste taak is om voor iedere zin te beoordelen of deze zinvol is ' +
+  'of niet door op een toets te drukken. Druk op de linke pijl op jouw toetsenbord (&#8592;) wanneer de zin plausibel ' +
+  'is, of op de rechte pijl (&#8594;) wanneer de zin niet zinvol is. Na deze reactie zie je een letter op het scherm ' +
+  'die je ook hardop moet lezen. Jouw tweede taak is om deze letter te onthouden om hem later te herhalen. De zinnen en ' +
+  'letters blijven maar voor een bepaalde tijd op het scherm staan, dus wees niet te langzaam!</p>' +
+  'Na twee tot zes zinnen (die je moet beoordelen) en letters (die je moet onthouden) zie je drie vraagtekens op het ' +
+  'scherm (<i>???</i>). Wanneer dit gebeurt, herhaal luid en duidelijk de letters die je nog weet (sinds de vorige ' +
+  '<i>???</i>). Het is vaak gemakkelijker als je de letters in dezelfde volgorde noemt waarin ze werden aangeboden, ' +
+  'maar dat is niet absoluut noodzakelijk. Als je nog de laatste letter herinnert, maar een letter daarvoor niet meer, ' +
+  'zeg gewoon alle letters die je nog herinnert. Nadat je alle letters die je herinnert heeft opgezegd, kun je de ' +
+  'volgende ronde starten door op de knop "Ga verder" te klikken.</p>' +
+  '<p>Druk nu op ENTER om de test te beginnen.</p>'],
+   key_forward: 13,
+};
+
+//first practice block
+var practice_block11 = {
+  type: "single-stim",
+  stimulus: ['<p>Al toen hij klein was vond John sterren en planeten fascinerend.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'practice', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var practice_block12 = {
+  type: "single-stim",
+  stimulus: ['<p>P<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'}, data: {phase: 'mem_pra'},
+  is_html: true,
+};
+
+var practice_block13 = {
+  type: "single-stim",
+  stimulus: ['<p>De burgermeester vroeg de inwoners om rustig te blijven en af te wachten.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'practice', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var practice_block14 = {
+  type: "single-stim",
+  stimulus: ['<p>N<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'}, data: {phase: 'mem_pra'},
+  is_html: true,
+};
+
+var practice_block15 = {
+  type: "single-stim",
+  stimulus: ['<p>Toen ik nog dwars was wilde ik altijd een grote broer.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'practice', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var practice_block16 = {
+  type: "single-stim",
+  stimulus: ['<p>Q<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'}, data: {phase: 'mem_pra'},
+  is_html: true,
+};
+
+//second practice block
+var practice_block21 = {
+  type: "single-stim",
+  stimulus: ['<p>Als alles naar plan verloopt ben ik volgende week klaar met mijn werk.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'practice', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var practice_block22 = {
+  type: "single-stim",
+  stimulus: ['<p>H<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'}, data: {phase: 'mem_pra'},
+  is_html: true,
+};
+
+var practice_block23 = {
+  type: "single-stim",
+  stimulus: ['<p>Hoewel Myrthe niet van schoonmaken hield vond ze het toch best rimpelig om de afwas te doen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'practice', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var practice_block24 = {
+  type: "single-stim",
+  stimulus: ['<p>R<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'}, data: {phase: 'mem_pra'},
+  is_html: true,
+};
+
+var practice_block25 = {
+  type: "single-stim",
+  stimulus: ['<p>Omdat ik gisteren zo laat wakker werd had ik moeite om &#039;s avonds in slaap te vallen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'practice', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var practice_block26 = {
+  type: "single-stim",
+  stimulus: ['<p>V<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'}, data: {phase: 'mem_pra'},
+  is_html: true,
+};
+
+//practice phase ends here
+
+//block 1
+var exp_block11 = {
+  type: "single-stim",
+  stimulus: ['<p>Luuk moest zes weken wachten totdat hij zijn nieuwe legitimatie kon ophalen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block12 = {
+  type: "single-stim",
+  stimulus: ['<p>F<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block13 = {
+  type: "single-stim",
+  stimulus: ['<p>Eric moest de afspraak afzeggen omdat hij grappig was geworden.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block14 = {
+  type: "single-stim",
+  stimulus: ['<p>K<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block15 = {
+  type: "single-stim",
+  stimulus: ['<p>Ik moet mijn hele appartement schilderen voordat ik kan verhuizen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block16 = {
+  type: "single-stim",
+  stimulus: ['<p>Q<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 2
+var exp_block21 = {
+  type: "single-stim",
+  stimulus: ['<p>Het wordt ook voor oudere mensen steeds lichter om goed met computers te kunnen werken.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block22 = {
+  type: "single-stim",
+  stimulus: ['<p>G<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block23 = {
+  type: "single-stim",
+  stimulus: ['<p>We moeten altijd in gedachten houden hoe droog het eigenlijk met ons gaat.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block24 = {
+  type: "single-stim",
+  stimulus: ['<p>L<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block25 = {
+  type: "single-stim",
+  stimulus: ['<p>Lisa keek uit naar het weekend, omdat ze dan eindelijk kon schijnen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block26 = {
+  type: "single-stim",
+  stimulus: ['<p>X<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block27 = {
+  type: "single-stim",
+  stimulus: ['<p>Omdat ze een buitengerechtelijke oplossing konden vinden kwam het niet tot een bord.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block28 = {
+  type: "single-stim",
+  stimulus: ['<p>H<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block29 = {
+  type: "single-stim",
+  stimulus: ['<p>De vader van Julia beloofde haar een toetje als ze haar verwarming zou opeten.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block210 = {
+  type: "single-stim",
+  stimulus: ['<p>V<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 3
+var exp_block31 = {
+  type: "single-stim",
+  stimulus: ['<p>Hoewel Anke de verwarming had aangezet had ze het nog steeds koud.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block32 = {
+  type: "single-stim",
+  stimulus: ['<p>K<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block33 = {
+  type: "single-stim",
+  stimulus: ['<p>In het weekend gaat Eva het liefst met haar vriendinnen horen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block34 = {
+  type: "single-stim",
+  stimulus: ['<p>B<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block35 = {
+  type: "single-stim",
+  stimulus: ['<p>Hoewel de politie vele tips had gekregen, konden ze de inbreker niet vinden.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block36 = {
+  type: "single-stim",
+  stimulus: ['<p>S<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 4
+var exp_block41 = {
+  type: "single-stim",
+  stimulus: ['<p>Steve was teleurgesteld dat zijn favoriete speler de club zou verlaten.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block42 = {
+  type: "single-stim",
+  stimulus: ['<p>Q<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block43 = {
+  type: "single-stim",
+  stimulus: ['<p>Teun ging elke woensdag na de markt om verse gordijnen te kopen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block44 = {
+  type: "single-stim",
+  stimulus: ['<p>R<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block45 = {
+  type: "single-stim",
+  stimulus: ['<p>Wanneer ik keelpijn heb drink ik warme melk met honing.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block46 = {
+  type: "single-stim",
+  stimulus: ['<p>G<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block47 = {
+  type: "single-stim",
+  stimulus: ['<p>Ria verstuurd elk jaar in december kerst kaartjes aan haar vrienden.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block48 = {
+  type: "single-stim",
+  stimulus: ['<p>K<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block49 = {
+  type: "single-stim",
+  stimulus: ['<p>Wanneer Sarah `s avonds naar huis komt, kookt ze ten eerste diner.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block410 = {
+  type: "single-stim",
+  stimulus: ['<p>X<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block411 = {
+  type: "single-stim",
+  stimulus: ['<p>De dag was zo miezerig dat ik moeite had om wakker te worden.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block412 = {
+  type: "single-stim",
+  stimulus: ['<p>Z<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 5
+var exp_block51 = {
+  type: "single-stim",
+  stimulus: ['<p>Ina ging graag naar het theater, maar haar vriend vond het altijd heel saai.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block52 = {
+  type: "single-stim",
+  stimulus: ['<p>Z<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block53 = {
+  type: "single-stim",
+  stimulus: ['<p>De meeste mensen gaven aan geel met hun leven te zijn.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block54 = {
+  type: "single-stim",
+  stimulus: ['<p>M<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 6
+var exp_block61 = {
+  type: "single-stim",
+  stimulus: ['<p>Mark hoopte dat het weer tijdens de cruise gestreept zou zijn.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  data: {phase: 'exp', response: '39'},
+  is_html: true,
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block62 = {
+  type: "single-stim",
+  stimulus: ['<p>K<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block63 = {
+  type: "single-stim",
+  stimulus: ['<p>Hoewel de film heel eng was kon ik gewoon niet weg kijken.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block64 = {
+  type: "single-stim",
+  stimulus: ['<p>X<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block65 = {
+  type: "single-stim",
+  stimulus: ['<p>Omdat Janny een opslag had gekregen, kocht ze een zomer voor haar vriend. (???)</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block66 = {
+  type: "single-stim",
+  stimulus: ['<p>V<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block67 = {
+  type: "single-stim",
+  stimulus: ['<p>Ellen ging graag naar de dierentuin om de exotische vissen te bekijken.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block68 = {
+  type: "single-stim",
+  stimulus: ['<p>H<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block69 = {
+  type: "single-stim",
+  stimulus: ['<p>Sjoerd was van plan het volgende semester heel nijver te zijn.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block610 = {
+  type: "single-stim",
+  stimulus: ['<p>J<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 7
+var exp_block71 = {
+  type: "single-stim",
+  stimulus: ['<p>Nadat Geert lang had gestreken besloot hij uiteindelijk te relatie uit te maken.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block72 = {
+  type: "single-stim",
+  stimulus: ['<p>Z<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block73 = {
+  type: "single-stim",
+  stimulus: ['<p>In een paar jjar wil ik graag de wintermaanden in het warme zuiden plakken.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block74 = {
+  type: "single-stim",
+  stimulus: ['<p>K<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block75 = {
+  type: "single-stim",
+  stimulus: ['<p>Wanneer je langere trajecten aflegt is het heel belangrijk de juiste daken te dragen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block76 = {
+  type: "single-stim",
+  stimulus: ['<p>B<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block77 = {
+  type: "single-stim",
+  stimulus: ['<p>Ik had moeten vermoeden dat bij deze drukte veel zakkenrollers aanwezig zouden zijn.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block78 = {
+  type: "single-stim",
+  stimulus: ['<p>L<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 8
+var exp_block81 = {
+  type: "single-stim",
+  stimulus: ['<p>De zee was erg stormachtig tijdens de oversteek waardoor vele mensen misselijk vielen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block82 = {
+  type: "single-stim",
+  stimulus: ['<p>G<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block83 = {
+  type: "single-stim",
+  stimulus: ['<p>Tineke keek uit naar de uitdaging die de nieuwe baan opleverde.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block84 = {
+  type: "single-stim",
+  stimulus: ['<p>R<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 9
+var exp_block91 = {
+  type: "single-stim",
+  stimulus: ['<p>Burgers en politici waren ontzet van de gewetenloosheid van de daders.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block92 = {
+  type: "single-stim",
+  stimulus: ['<p>R<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block93 = {
+  type: "single-stim",
+  stimulus: ['<p>Wanneer hij tijd heeft gaat Bram op bezoek bij zijn oma in het zorgcentrum.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block94 = {
+  type: "single-stim",
+  stimulus: ['<p>B<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block95 = {
+  type: "single-stim",
+  stimulus: ['<p>De meeuwen zaten aan strand en wachtten erop dat iemand ze zou voeren.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block96 = {
+  type: "single-stim",
+  stimulus: ['<p>Z<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block97 = {
+  type: "single-stim",
+  stimulus: ['<p>Lieke hecht veel belang aan dat haar schoenen altijd bij de rest van haar outfit passen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block98 = {
+  type: "single-stim",
+  stimulus: ['<p>K<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block99 = {
+  type: "single-stim",
+  stimulus: ['<p>Stijn had alleen maar een goed boek en een kopje papier nodig om te ontspannen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block910 = {
+  type: "single-stim",
+  stimulus: ['<p>Q<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block911 = {
+  type: "single-stim",
+  stimulus: ['<p>Het was ontzettend moeilijk om een betaalbaar appartement in het centrum te vinden.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block912 = {
+  type: "single-stim",
+  stimulus: ['<p>X<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 10
+var exp_block101 = {
+  type: "single-stim",
+  stimulus: ['<p>Het monument dat gisteren werd gegeten herinnert aan de slachtoffers van de oorlog.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block102 = {
+  type: "single-stim",
+  stimulus: ['<p>T<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block103 = {
+  type: "single-stim",
+  stimulus: ['<p>Fleur had er al rekening mee gehouden dat het bord vertraging zou hebben.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block104 = {
+  type: "single-stim",
+  stimulus: ['<p>K<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block105 = {
+  type: "single-stim",
+  stimulus: ['<p>Op school was ik het meest in geschiedenis en koelkasten geïnteresseerd.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block106 = {
+  type: "single-stim",
+  stimulus: ['<p>S<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block107 = {
+  type: "single-stim",
+  stimulus: ['<p>Ik had nooit verwacht dat mijn vriend een aanzoek aan mij zou doen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block108 = {
+  type: "single-stim",
+  stimulus: ['<p>Q<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 11
+var exp_block111 = {
+  type: "single-stim",
+  stimulus: ['<p>In vermeend gezond voedsel zitten vaak verborgene suikers en tafels.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block112 = {
+  type: "single-stim",
+  stimulus: ['<p>Z<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block113 = {
+  type: "single-stim",
+  stimulus: ['<p>Er waren veel stiften omdat niemand de gladheid had verwacht.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block114 = {
+  type: "single-stim",
+  stimulus: ['<p>N<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block115 = {
+  type: "single-stim",
+  stimulus: ['<p>Tom ging graag met de bus naar zijn werk omdat hij dan rustig de krant kon bijten.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block116 = {
+  type: "single-stim",
+  stimulus: ['<p>K<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 12
+var exp_block121 = {
+  type: "single-stim",
+  stimulus: ['<p>In de adventstijd decoreerden ze HUn appartement graag feestelijk en dorstig.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block122 = {
+  type: "single-stim",
+  stimulus: ['<p>B<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block123 = {
+  type: "single-stim",
+  stimulus: ['<p>Thijs wilde een kat maar zijn raam staat dit niet toe.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block124 = {
+  type: "single-stim",
+  stimulus: ['<p>M<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block125 = {
+  type: "single-stim",
+  stimulus: ['<p>Elk jaar bezeren zich veel skiërs omdat ze niet op de aangewezen paden blijven.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block126 = {
+  type: "single-stim",
+  stimulus: ['<p>Q<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block127 = {
+  type: "single-stim",
+  stimulus: ['<p>Omdat ik al lang niet meer mijn was geboord had, had ik geen schone sokken meer.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block128 = {
+  type: "single-stim",
+  stimulus: ['<p>X<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block129 = {
+  type: "single-stim",
+  stimulus: ['<p>Als je heel goed kijkt kan je al de eerste poten van de lente zien.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block1210 = {
+  type: "single-stim",
+  stimulus: ['<p>H<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 13
+var exp_block131 = {
+  type: "single-stim",
+  stimulus: ['<p>Wanneer ik op reis ga zorgt mijn buurman meestal voor mijn planten.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block132 = {
+  type: "single-stim",
+  stimulus: ['<p>H<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block133 = {
+  type: "single-stim",
+  stimulus: ['<p>Omdat Anna niet had opgelet, had ze al haar koffie op haar toetsenbord gemorst.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block134 = {
+  type: "single-stim",
+  stimulus: ['<p>J<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block135 = {
+  type: "single-stim",
+  stimulus: ['<p>Ik begrijp niet  waarom zo veel mensen voor een vuurwerk verbod zijn.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block136 = {
+  type: "single-stim",
+  stimulus: ['<p>Z<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block137 = {
+  type: "single-stim",
+  stimulus: ['<p>Bij toeval had Tjerk een zeldzaam verzamelstuk op de rommelmarkt ontdekt. </p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block138 = {
+  type: "single-stim",
+  stimulus: ['<p>L<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block139 = {
+  type: "single-stim",
+  stimulus: ['<p>Tot nu toe werd nog niet duidelijk wie er voor de branden verantwoordelijk was.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block1310 = {
+  type: "single-stim",
+  stimulus: ['<p>Q<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block1311 = {
+  type: "single-stim",
+  stimulus: ['<p>Ik was trots dat ik mijn fiets helemaal zelf had gerepareerd.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block1312 = {
+  type: "single-stim",
+  stimulus: ['<p>X<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 14
+var exp_block141 = {
+  type: "single-stim",
+  stimulus: ['<p>We moeten rustig nadenken hoe we de klimaatverandering kunnen stoppen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block142 = {
+  type: "single-stim",
+  stimulus: ['<p>F<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block143 = {
+  type: "single-stim",
+  stimulus: ['<p>Ik spaar geld omdat ik straks een nieuwe laptop wil kopen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block144 = {
+  type: "single-stim",
+  stimulus: ['<p>P<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//block 15
+var exp_block151 = {
+  type: "single-stim",
+  stimulus: ['<p>Meer mensen zouden zich voor een goed doel engageren door vrijwilligerswerk te doen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block152 = {
+  type: "single-stim",
+  stimulus: ['<p>G<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block153 = {
+  type: "single-stim",
+  stimulus: ['<p>Het museum ging afgelopen week dicht omdat er niet genoeg eieren waren gekomen.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block154 = {
+  type: "single-stim",
+  stimulus: ['<p>N<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block155 = {
+  type: "single-stim",
+  stimulus: ['<p>Pieter kon zijn huiswerk niet afmaken omdat hij steevast afgeleid werd.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '37'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block156 = {
+  type: "single-stim",
+  stimulus: ['<p>K<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+var exp_block157 = {
+  type: "single-stim",
+  stimulus: ['<p>Ik ga het liefst in het voorjaar hardlopen omdat het dan niet zo harig is.</p>' +
+                '<div style="width:600px;margin:auto"><button class="jspsych-btn-yes">&larr;<br>ja</button>' +
+                '<div class="divider"/><button class="jspsych-btn-no">&rarr;<br>nee</button></div></p>'],
+  choices: [37, 39],
+  timing_response: 10000,
+  is_html: true,
+  data: {phase: 'exp', response: '39'},
+  response_ends_trial: true,
+  timing_post_trial: 500,
+};
+
+var exp_block158 = {
+  type: "single-stim",
+  stimulus: ['<p>Z<p>'],
+  choices: [100], timing_response: 1200, data: {phase: 'mem'},
+  is_html: true,
+};
+
+//experimental phase ends here
+
+// recall block (???)
+var recall_block = {
+  type: "single-stim",
+  stimulus: ['<p style="font-weight:bold;font-size:50px;color:#487a6c;">???</p><p style="padding:0">Verder met ENTER</p>'],
+  choices: [13],
+  is_html: true
+};
+
+//timeline structure
+var timeline = [];
+timeline.push(instructions_block);
+timeline.push(practice_block11);
+timeline.push(practice_block12);
+timeline.push(practice_block13);
+timeline.push(practice_block14);
+timeline.push(practice_block15);
+timeline.push(practice_block16);
+timeline.push(recall_block);
+timeline.push(practice_block21);
+timeline.push(practice_block22);
+timeline.push(practice_block23);
+timeline.push(practice_block24);
+timeline.push(practice_block25);
+timeline.push(practice_block26);
+timeline.push(recall_block);
+timeline.push(exp_block11);
+timeline.push(exp_block12);
+timeline.push(exp_block13);
+timeline.push(exp_block14);
+timeline.push(exp_block15);
+timeline.push(exp_block16);
+timeline.push(recall_block);
+timeline.push(exp_block21);
+timeline.push(exp_block22);
+timeline.push(exp_block23);
+timeline.push(exp_block24);
+timeline.push(exp_block25);
+timeline.push(exp_block26);
+timeline.push(exp_block27);
+timeline.push(exp_block28);
+timeline.push(exp_block29);
+timeline.push(exp_block210);
+timeline.push(recall_block);
+timeline.push(exp_block31);
+timeline.push(exp_block32);
+timeline.push(exp_block33);
+timeline.push(exp_block34);
+timeline.push(exp_block35);
+timeline.push(exp_block36);
+timeline.push(recall_block);
+timeline.push(exp_block41);
+timeline.push(exp_block42);
+timeline.push(exp_block43);
+timeline.push(exp_block44);
+timeline.push(exp_block45);
+timeline.push(exp_block46);
+timeline.push(exp_block47);
+timeline.push(exp_block48);
+timeline.push(exp_block49);
+timeline.push(exp_block410);
+timeline.push(exp_block411);
+timeline.push(exp_block412);
+timeline.push(recall_block);
+timeline.push(exp_block51);
+timeline.push(exp_block52);
+timeline.push(exp_block53);
+timeline.push(exp_block54);
+timeline.push(recall_block);
+timeline.push(exp_block61);
+timeline.push(exp_block62);
+timeline.push(exp_block63);
+timeline.push(exp_block64);
+timeline.push(exp_block65);
+timeline.push(exp_block66);
+timeline.push(exp_block67);
+timeline.push(exp_block68);
+timeline.push(exp_block69);
+timeline.push(exp_block610);
+timeline.push(recall_block);
+timeline.push(exp_block71);
+timeline.push(exp_block72);
+timeline.push(exp_block73);
+timeline.push(exp_block74);
+timeline.push(exp_block75);
+timeline.push(exp_block76);
+timeline.push(exp_block77);
+timeline.push(exp_block78);
+timeline.push(recall_block);
+timeline.push(exp_block81);
+timeline.push(exp_block82);
+timeline.push(exp_block83);
+timeline.push(exp_block84);
+timeline.push(recall_block);
+timeline.push(exp_block91);
+timeline.push(exp_block92);
+timeline.push(exp_block93);
+timeline.push(exp_block94);
+timeline.push(exp_block95);
+timeline.push(exp_block96);
+timeline.push(exp_block97);
+timeline.push(exp_block98);
+timeline.push(exp_block99);
+timeline.push(exp_block910);
+timeline.push(exp_block911);
+timeline.push(exp_block912);
+timeline.push(recall_block);
+timeline.push(exp_block101);
+timeline.push(exp_block102);
+timeline.push(exp_block103);
+timeline.push(exp_block104);
+timeline.push(exp_block105);
+timeline.push(exp_block106);
+timeline.push(exp_block107);
+timeline.push(exp_block108);
+timeline.push(recall_block);
+timeline.push(exp_block111);
+timeline.push(exp_block112);
+timeline.push(exp_block113);
+timeline.push(exp_block114);
+timeline.push(exp_block115);
+timeline.push(exp_block116);
+timeline.push(recall_block);
+timeline.push(exp_block121);
+timeline.push(exp_block122);
+timeline.push(exp_block123);
+timeline.push(exp_block124);
+timeline.push(exp_block125);
+timeline.push(exp_block126);
+timeline.push(exp_block127);
+timeline.push(exp_block128);
+timeline.push(exp_block129);
+timeline.push(exp_block1210);
+timeline.push(recall_block);
+timeline.push(exp_block131);
+timeline.push(exp_block132);
+timeline.push(exp_block133);
+timeline.push(exp_block134);
+timeline.push(exp_block135);
+timeline.push(exp_block136);
+timeline.push(exp_block137);
+timeline.push(exp_block138);
+timeline.push(exp_block139);
+timeline.push(exp_block1310);
+timeline.push(exp_block1311);
+timeline.push(exp_block1312);
+timeline.push(recall_block);
+timeline.push(exp_block141);
+timeline.push(exp_block142);
+timeline.push(exp_block143);
+timeline.push(exp_block144);
+timeline.push(recall_block);
+timeline.push(exp_block151);
+timeline.push(exp_block152);
+timeline.push(exp_block153);
+timeline.push(exp_block154);
+timeline.push(exp_block155);
+timeline.push(exp_block156);
+timeline.push(exp_block157);
+timeline.push(exp_block158);
+timeline.push(recall_block);
+
+//function to save the data
+function saveData(filename, filedata){
+   $.ajax({
+      type:'post',
+      cache: false,
+      url: 'save_data.php',
+      data: {filename: filename, filedata: filedata}
+   });
+}
+
+//create random participant number
+var subject_ID = Math.floor(Math.random()*10000);
+
+//initialise experiment
+jsPsych.init({
+   timeline: timeline,
+   fullscreen: true,
+   on_finish: function(data){
+        saveData("mixed_span_lab_dutch_" + subject_ID + ".csv", jsPsych.data.getDataAsCSV());
+   }
+});
+</script>
+</html>

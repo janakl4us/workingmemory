@@ -7,14 +7,14 @@ library("pastecs") #descriptive statistics
 
 #-------------------------------------------------------------------#
 #-----------------structure of script-------------------------------#
-#--- 1. read in data and analyze demographics of sample-------------#
+#--- 1. read in data------------------------------------------------#
 #--- 2. analyze error rates in processing task----------------------#
 #--- 3. analyze reaction times in processing task-------------------#
 #--- 4. analyze performance in memory recall task-------------------#
 #-------------------------------------------------------------------#
 
 #-------------------------------------------------------------------#
-#--- 1. read in data and analyze demographics of sample-------------#
+#--- 1. read in data -----------------------------------------------#
 #-------------------------------------------------------------------#
 #read in result file
 raw <- read.csv("___.csv", header=T, na.strings=c("NA","NaN", " "), strip.white = T)
@@ -35,60 +35,9 @@ raw$rt <- as.numeric(as.character(raw$rt))
 raw$trial_index <- as.numeric(as.character(raw$trial_index))
 
 #---------------------------------------------#
-#---------demographics------------------------#
-#---------------------------------------------#
-dem <- subset(raw[raw$trial_index == 0 | raw$trial_index == 1,], select = c("Q0", "Q1", "Q2"))
-str(dem)
-
-Nth.delete<-function(dataframe, n)dataframe[-(seq(n,to=nrow(dataframe),by=n)),]
-dem <- Nth.delete(dem, 2)
-
-#create new subject list - second value of rep needs to be adjusted according to number of participants
-for (i in length(raw$trial_type)){
-  subj <- cbind(subj = (rep(1:___, each=1)))
-}
-
-#combine subject list and proc file
-dem <- cbind(subj,dem)
-
-#define age from survey
-dem$age[dem$Q0 == "0"] <- "-20"
-dem$age[dem$Q0 == "1"] <- "20-25"
-dem$age[dem$Q0 == "2"] <- "26-30"
-dem$age[dem$Q0 == "3"] <- "31-35"
-dem$age[dem$Q0 == "4"] <- "36-40"
-dem$age[dem$Q0 == "5"] <- "gt 40"
-dem$age[dem$Q0 == "-1"] <- NA
-table(dem$age)
-
-#define sex from survey
-dem$sex[dem$Q1 == "0"] <- "male"
-dem$sex[dem$Q1 == "1"] <- "female"
-dem$sex[dem$Q1 == "-1"] <- NA
-table(dem$sex)
-
-#define native language from survey
-dem$native[dem$Q2 == "0"] <- "dutch"
-dem$native[dem$Q2 == "1"] <- "other"
-dem$native[dem$Q2 == "-1"] <- NA
-table(dem$native) #overview of native language
-table(dem$subj[dem$native!="dutch"]) #show which participants are not native
-
-#remove non-natives and NAs
-drop.subj.nonnative = dem$subj[dem$native!="dutch"]
-dem = dem[!(dem$subj %in% drop.subj.nonnative),]
-
-#look at demographics of remaining sample
-dem <- subset(dem, select = c(age, sex, native, subj))
-table(dem$age)
-table(dem$sex)
-
-#---------------------------------------------#
 #----------analysis processing task-----------#
 #---------------------------------------------#
 proc <- subset(raw, raw$phase == "exp")
-proc = subset(proc[!(proc$subj %in% drop.subj.nonnative),], na.rm=T)
-proc = subset(proc[!is.na(proc$subj),])
 
 #code errors
 proc$err = 0
@@ -166,9 +115,8 @@ res <- cbind.data.frame(res_rt, res_err$merr)
 mem <- subset(raw, raw$trial_type=="survey-text" & raw$trial_index > 16)
 mem <- subset(mem, select = c(subj, Q0, Q1, Q2, Q3, Q4, Q5, trial_index))
 
-#remove participants with more than 9 errors and nonnative speakers and older than 30
+#remove participants with more than 9 errors
 mem = mem[!(mem$subj %in% drop.subj),]
-mem = mem[!(mem$subj %in% drop.subj.nonnative),]
 
 #convert all responses to lowercase
 mem <- mutate_each(mem, funs(tolower))

@@ -56,9 +56,6 @@ proc$rt[proc$err==1] = NA #remove RT if error in key response
 round(tapply(proc$err,INDEX=proc$subj,FUN=sum, na.rm=T))
 
 err_mean <- ddply(proc, .(subj), summarize, merr=mean(err))
-err_mean <- cbind(err_mean, dem)
-err_mean$native <- as.factor(err_mean$native)
-
 plot(err_mean$subj, err_mean$merr)
 
 #remove participants with more than 9 errors

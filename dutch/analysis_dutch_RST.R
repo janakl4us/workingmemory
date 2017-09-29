@@ -22,7 +22,7 @@ raw <- raw[raw$Q0 != "Q0",]
 
 #create subject list - second value of rep needs to be adjusted according to number of participants
 for (i in length(raw$trial_type)){
-  subj <- cbind(subj = (rep(1:___, each=153)))
+  subj <- cbind(subj = (rep(1:___, each=150)))
 }
 
 #combine subject list and proc file
